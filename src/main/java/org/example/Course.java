@@ -10,4 +10,17 @@ public class Course {
         this.name = name;
         this.student = new ArrayList<>();
     }
+
+    public String toSimplifiedString() {
+
+    }
+
+    @Override
+    public String toString() {
+        String message = "Course{" +
+                "name='" + name + '\'' +
+                ', students=';
+
+
+    }
 }
