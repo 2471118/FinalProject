@@ -10,6 +10,7 @@ import lombok.ToString;
 public class Department {
     private final String departmentId;
     private String departmentName;
+
     private static int nextId = 1;
 
     /**
