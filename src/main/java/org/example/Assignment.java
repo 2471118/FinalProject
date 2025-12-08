@@ -1,8 +1,17 @@
 package org.example;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.Random;
 
+@AllArgsConstructor
+@EqualsAndHashCode
+@Getter
+@Setter
 public class Assignment {
     private String assignmentId;
     private String assignmentName;
@@ -11,7 +20,15 @@ public class Assignment {
 
     private static int nextId = 1;
 
+    /**
+     * calculates the average of assignments
+     * @return the average of assignments
+     */
     public double calcAssignmentAvg() {
+        if (scores == null || scores.isEmpty()) {
+            return 0;
+        }
+
         double sum = 0;
         int count = 0;
 
@@ -25,11 +42,32 @@ public class Assignment {
     }
 
     public void generateRandomScore() {
+        if (scores == null) {
+            scores = new ArrayList<>();
+        }
+
         Random random = new Random();
 
         for (int i = 0; i < scores.size(); i++) {
-            int randomCategory = random.nextInt(11);
+            int range = random.nextInt(11);
+            int score;
+            if (range == 0) {
+                score = random.nextInt(60);
+            } else if (range <= 2) {
+                score = 60 + random.nextInt(10);
+            } else if (range <= 4) {
+                score = 70 + random.nextInt(10);
+            } else if (range <= 8) {
+                score = 80 + random.nextInt(10);
+            } else {
+                score = 90 + random.nextInt(11);
+            }
+            scores.set(i, score);
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Assignment [ID: " + assignmentId + ", Name: " + assignmentName + ", Weight: " + weight + "%]";
     }
 }
