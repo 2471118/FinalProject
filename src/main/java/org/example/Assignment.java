@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import util.Util;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -64,6 +65,13 @@ public class Assignment {
             }
             scores.set(i, score);
         }
+    }
+
+    public Assignment(String assignmentName, double weight) {
+        this.assignmentId = String.format("%02d", nextId++);
+        this.assignmentName = Util.toTitleCase(assignmentName);
+        this.weight = weight;
+        this.scores = new ArrayList<>();
     }
 
     @Override
