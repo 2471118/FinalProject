@@ -1,6 +1,7 @@
 package org.example;
 
 import lombok.*;
+import util.Util;
 
 @ToString
 @EqualsAndHashCode
@@ -45,10 +46,10 @@ public class Address {
     public Address(int streetNo, String street, String city, Province province, String postalCode) {
         if (isPostalCodeValid(postalCode)) {
             this.streetNo = streetNo;
-            this.street = street;
-            this.city = city;
+            this.street = Util.toTitleCase(street);
+            this.city = Util.toTitleCase(city);
             this.province = province;
-            this.postalCode = postalCode;
+            this.postalCode = postalCode.toUpperCase();
         } else {
             this.streetNo = 0;
             this.street = null;
