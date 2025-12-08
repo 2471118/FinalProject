@@ -58,8 +58,14 @@ public class Course {
         assignments.add(assignment);
 
         for (int i = 0; i < registeredStudents.size(); i++) {
-            assignment.addScore(null);
+
         }
         return true;
+    }
+
+    public Course(String courseName, double credits, Department department) {
+        this.courseName = courseName;
+        this.credits = credits;
+        this.department = department;
     }
 }
