@@ -3,24 +3,11 @@ package org.example;
 import java.util.ArrayList;
 
 public class Course {
-    private String name;
-    private List<Student> student;
-
-    public Course(String name) {
-        this.name = name;
-        this.student = new ArrayList<>();
-    }
-
-    public String toSimplifiedString() {
-
-    }
-
-    @Override
-    public String toString() {
-        String message = "Course{" +
-                "name='" + name + '\'' +
-                ', students=';
-
-
-    }
+    private String courseId;
+    private String courseName;
+    private double credits;
+    private Department department;
+    private ArrayList<Assignment> assignments;
+    private ArrayList<Student> registeredStudents;
+    private static int nextId;
 }
