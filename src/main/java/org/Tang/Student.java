@@ -1,4 +1,4 @@
-package org.example;
+package org.Tang;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
