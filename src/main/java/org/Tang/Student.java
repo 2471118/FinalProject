@@ -24,6 +24,11 @@ public class Student {
         MALE, FEMALE
     }
 
+    /**
+     * registers a student for a course
+     * @param course the chosen course
+     * @return the student registered
+     */
     public boolean registerCourse(Course course) {
         if (registeredCourses.contains(course)) {
             return false;
@@ -34,6 +39,11 @@ public class Student {
         return true;
     }
 
+    /**
+     * drops a student from a course
+     * @param course the chosen course
+     * @return the student dropped
+     */
     public boolean dropCourse(Course course) {
         if (!registeredCourses.contains(course)) {
             return false;
@@ -44,6 +54,10 @@ public class Student {
         return true;
     }
 
+    /**
+     * reformats the string into a simpler version
+     * @return the simplified string
+     */
     public String toSimplifiedString() {
         return String.format("%s - %s (%s)", studentId, studentName, department);
     }

@@ -33,6 +33,11 @@ public class Course {
         return Math.abs(sum - 100) < 0.001;
     }
 
+    /**
+     * adds the student to this course
+     * @param student the student to be registered to this course
+     * @return the student registered in this course
+     */
     public boolean registerStudent(Student student) {
         if (registeredStudents.contains(student)) {
             return false;
@@ -46,6 +51,10 @@ public class Course {
         return true;
     }
 
+    /**
+     * calculates the students' average
+     * @return the students' average
+     */
     public int[] calcStudentsAverage() {
         int[] averages = new int[registeredStudents.size()];
 
@@ -63,6 +72,12 @@ public class Course {
         return averages;
     }
 
+    /**
+     * add an assignment to the course
+     * @param assignmentName the name of the assignment
+     * @param weight the wight of the assignment
+     * @return the course with the new assignment
+     */
     public boolean addAssignment(String assignmentName, double weight) {
         Assignment assignment = new Assignment(assignmentName, weight);
         assignments.add(assignment);
@@ -79,7 +94,6 @@ public class Course {
         }
         calcStudentsAverage();
     }
-
 
     public void displayScores() {
         System.out.println("\nCourse: " + courseName + " (" + courseId + ")");
@@ -121,6 +135,10 @@ public class Course {
         System.out.println();
     }
 
+    /**
+     * reformats the string into a simpler version
+     * @return the simplified string
+     */
     public String toSimplifiedString() {
         return courseId + " - " + courseName + " (" + credits + "cr, "
                 + department.getDepartmentName() + ")";
