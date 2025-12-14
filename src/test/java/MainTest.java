@@ -1,8 +1,10 @@
-import org.Tang.Address;
-import org.Tang.Department;
+import org.Tang.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.Util;
+
+import java.util.List;
 
 public class MainTest {
 
@@ -87,5 +89,93 @@ public class MainTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @DisplayName()
+    @DisplayName("BAnaNa BeRRy-> Banana Berry")
+    @Test
+    void testToTitleCase1() {
+        String str = "BAnaNa BeRRy";
+        String expected = "Banana Berry ";
+        String actual = Util.toTitleCase(str);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("register course -> yes")
+    @Test
+    void testRegisterCourse1() {
+        Department d = new Department("Computer Science");
+        Course c = new Course("Introduction to Programming", 2.66, d);
+        Student s = new Student("Bobby Bob", Student.Gender.MALE, null, d);
+        boolean expected = true;
+        boolean actual = s.registerCourse(c);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("register course -> false")
+    @Test
+    void testRegisterCourse2() {
+        Department d = new Department("Computer Science");
+        Course c = new Course("Introduction to Programming", 2.66, d);
+        Student s = new Student("Bob Bobby", Student.Gender.MALE, null, d);
+        boolean expected = false;
+        s.registerCourse(c);
+        boolean actual = s.registerCourse(c);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("drop course -> yes")
+    @Test
+    void testDropCourse1() {
+        Department d = new Department("Computer Science");
+        Course c = new Course("Introduction to Programming", 2.66, d);
+        Student s = new Student("Bobby Bob", Student.Gender.MALE, null, d);
+        boolean expected = true;
+        s.registerCourse(c);
+        boolean actual = s.dropCourse(c);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("drop course -> false")
+    @Test
+    void testDropCourse2() {
+        Department d = new Department("Computer Science");
+        Course c = new Course("Introduction to Programming", 2.66, d);
+        Student s = new Student("Bob Bobby", Student.Gender.MALE, null, d);
+        boolean expected = false;
+        boolean actual = s.dropCourse(c);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("avg of 50 + 70 -> 60")
+    @Test
+    void testCalcAssignmentAvg() {
+        Assignment a = new Assignment("exam1", 20);
+        a.getScores().add(50);
+        a.getScores().add(70);
+        double expected = 60.0;
+        double actual = a.calcAssignmentAvg();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("40 + 60 = 100 -> true")
+    @Test
+    void testAssignmentWeightValid1() {
+        Department d = new Department("Math");
+        Course c = new Course("Algebra", 3.0, d);
+        c.addAssignment("Midterm", 40);
+        c.addAssignment("Final", 60);
+        boolean expected = true;
+        Boolean actual = c.isAssignmentWeightValid();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("40 + 70 = 100 -> false")
+    @Test
+    void testAssignmentWeightValid2() {
+        Department d = new Department("Math");
+        Course c = new Course("Algebra", 3.0, d);
+        c.addAssignment("Midterm", 40);
+        c.addAssignment("Final", 70);
+        boolean expected = false;
+        Boolean actual = c.isAssignmentWeightValid();
+        Assertions.assertEquals(expected, actual);
+    }
 }
