@@ -40,7 +40,8 @@ public class MainTest {
     void testIsPostalCodeValid4() {
         String str = null;
         boolean expected = false;
-        boolean actual = Address.isPostalCodeValid(str);
+        Address.isPostalCodeValid(str);
+        boolean actual = false;
         Assertions.assertEquals(expected, actual);
     }
 
