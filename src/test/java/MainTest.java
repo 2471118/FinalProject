@@ -4,8 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.Util;
 
-import java.util.List;
-
 public class MainTest {
 
     @DisplayName("A1B2C3 -> true")
