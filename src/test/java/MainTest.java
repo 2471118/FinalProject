@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.Util;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class MainTest {
 
     @DisplayName("A1B2C3 -> true")
@@ -175,5 +177,60 @@ public class MainTest {
         boolean expected = false;
         Boolean actual = c.isAssignmentWeightValid();
         Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("Average ignores null values")
+    @Test
+    void testCalcAssignmentAvgIgnoreNull() {
+        Assignment a = new Assignment("exam1", 20);
+
+        a.getScores().add(80);
+        a.getScores().add(null);
+        a.getScores().add(100);
+
+        Assertions.assertEquals(90.0, a.calcAssignmentAvg());
+    }
+
+    @DisplayName("Drop course removes student from course")
+    @Test
+    public void testDropCourse() {
+        Department d = new Department("Physics");
+        Course c = new Course("Mechanics", 3.0, d);
+
+        Student s = new Student("Tom White", Student.Gender.MALE, null, d);
+
+        s.registerCourse(c);
+        assertTrue(s.dropCourse(c));
+        assertTrue(s.getRegisteredCourses().isEmpty());
+        assertTrue(c.getRegisteredStudents().isEmpty());
+    }
+
+    @DisplayName("Constructor sets fields to null when postal code invalid")
+    @Test
+    public void testConstructorInvalid() {
+        Address a = new Address(10, "Main", "City", Address.Province.ON, "ABC123");
+        assertNull(a.getPostalCode());
+    }
+
+    @DisplayName("Generate scores should populate all assignment scores")
+    @Test
+    void testGenerateScores() {
+        Department dept = new Department("Computer Science");
+        Course course = new Course("Programming", 3.0, dept);
+        Student student = new Student("John Doe", Student.Gender.MALE,
+                new Address(123, "St", "City",
+                        Address.Province.ON, "A1B2C3"), dept);
+
+        course.registerStudent(student);
+        course.addAssignment("Assignment 1", 50.0);
+        course.addAssignment("Assignment 2", 50.0);
+
+        course.generateScores();
+
+        for (Assignment assignment : course.getAssignments()) {
+            assertNotNull(assignment.getScores().get(0));
+            int score = assignment.getScores().get(0);
+            assertTrue(score >= 0 && score <= 100);
+        }
     }
 }
